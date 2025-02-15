@@ -31,18 +31,22 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public ItemDto updateItem(Long userId, Long itemId, ItemDto itemDto) {
-        Item existingItem = itemStorage.findById(itemId)
-                .orElseThrow(() -> new NotFoundException("Вещь с id=" + itemId + " не найдена."));
+    public ItemDto updateItem(Long userId, ItemDto itemDto) {
+        Item existingItem = itemStorage.findById(itemDto.getId())
+                .orElseThrow(() -> new NotFoundException("Вещь с id=" + itemDto.getId() + " не найдена."));
 
         if (!existingItem.getOwner().getId().equals(userId)) {
             throw new UnauthorizedException("Пользователь не является владельцем вещи.");
         }
-
-        if (Objects.nonNull(itemDto.getName())) existingItem.setName(itemDto.getName());
-        if (Objects.nonNull(itemDto.getDescription())) existingItem.setDescription(itemDto.getDescription());
-        if (Objects.nonNull(itemDto.getAvailable())) existingItem.setAvailable(itemDto.getAvailable());
-
+        if (Objects.nonNull(itemDto.getName())) {
+            existingItem.setName(itemDto.getName());
+        }
+        if (Objects.nonNull(itemDto.getDescription())) {
+            existingItem.setDescription(itemDto.getDescription());
+        }
+        if (Objects.nonNull(itemDto.getAvailable())) {
+            existingItem.setAvailable(itemDto.getAvailable());
+        }
         return ItemMapper.toItemDto(itemStorage.save(existingItem));
     }
 

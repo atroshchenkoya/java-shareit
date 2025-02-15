@@ -32,8 +32,8 @@ public class UserService {
         return userStorage.create(user);
     }
 
-    public User partialUpdate(Long id, User updates) {
-        User existingUser = findById(id);
+    public User partialUpdate(User updates) {
+        User existingUser = findById(updates.getId());
 
         if (updates.getEmail() != null && !updates.getEmail().isBlank()) {
             checkEmailConflict(updates);

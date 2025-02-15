@@ -43,7 +43,8 @@ public class UserController {
 
     @PatchMapping("/{id}")
     public User update(@PathVariable long id, @Validated(Update.class) @RequestBody User user) {
-        return userService.partialUpdate(id, user);
+        user.setId(id);
+        return userService.partialUpdate(user);
     }
 
     @DeleteMapping("/{id}")
