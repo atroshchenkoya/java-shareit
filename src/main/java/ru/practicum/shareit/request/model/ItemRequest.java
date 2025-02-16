@@ -1,4 +1,4 @@
-package ru.practicum.shareit.request.dto;
+package ru.practicum.shareit.request.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +14,7 @@ import ru.practicum.shareit.user.model.User;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class ItemRequestDto {
+public class ItemRequest {
     @EqualsAndHashCode.Include
     private Long id;
     private String description;
