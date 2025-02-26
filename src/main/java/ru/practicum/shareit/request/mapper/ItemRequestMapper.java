@@ -12,4 +12,13 @@ public class ItemRequestMapper {
                 .timestamp(itemRequest.getTimestamp())
                 .build();
     }
+
+    public static ItemRequest toItemRequest(ItemRequestDto itemRequestDto) {
+        return ItemRequest.builder()
+                .id(itemRequestDto.getId())
+                .description(itemRequestDto.getDescription())
+                .requester(itemRequestDto.getRequester())
+                .timestamp(itemRequestDto.getTimestamp())
+                .build();
+    }
 }

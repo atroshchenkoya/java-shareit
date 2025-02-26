@@ -1,5 +1,6 @@
 package ru.practicum.shareit.item.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -31,6 +32,8 @@ public class ItemDto {
     @NotNull(message = "Поле доступности не должно быть пустым.", groups = Create.class)
     private Boolean available;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private User owner;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private ItemRequest request;
 }
