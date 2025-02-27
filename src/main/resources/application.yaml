@@ -21,3 +21,5 @@ logging:
     org.springframework.transaction: INFO
     org.springframework.transaction.interceptor: TRACE
     org.springframework.orm.jpa.JpaTransactionManager: DEBUG
+    org.springframework.web: DEBUG
+    org.zalando.logbook: TRACE
