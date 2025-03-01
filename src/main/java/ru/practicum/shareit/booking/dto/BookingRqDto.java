@@ -21,6 +21,7 @@ import java.time.LocalDateTime;
 @Builder
 @ValidBookingDates(groups = Create.class)
 public class BookingRqDto {
+
     private Long id;
 
     @NotNull(message = "Дата начала не может быть пустой.", groups = Create.class)
