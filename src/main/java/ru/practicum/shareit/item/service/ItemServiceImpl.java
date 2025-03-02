@@ -46,9 +46,8 @@ public class ItemServiceImpl implements ItemService {
     public ItemDto updateItem(Long userId, ItemDto itemDto) {
         Item existingItem = itemRepository.findById(itemDto.getId())
                 .orElseThrow(() -> new NotFoundException("Вещь с id=" + itemDto.getId() + " не найдена."));
-
         if (!existingItem.getOwner().getId().equals(userId)) {
-            throw new UnauthorizedException("Пользователь не является владельцем вещи.");
+            throw new UnauthorizedException("Пользователь с id=" + userId + " не является владельцем вещи.");
         }
         if (Objects.nonNull(itemDto.getName())) existingItem.setName(itemDto.getName());
         if (Objects.nonNull(itemDto.getDescription())) existingItem.setDescription(itemDto.getDescription());
@@ -82,7 +81,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public Collection<ItemDto> searchItems(String text) {
         if (text.isBlank()) return List.of();
-        return itemRepository.findByNameContainingIgnoreCaseAndAvailableTrueOrDescriptionContainingIgnoreCaseAndAvailableTrue(text, text)
+        return itemRepository.findAvailableItemsByNameOrDescription(text)
                 .stream()
                 .map(ItemMapper::toItemDto)
                 .collect(Collectors.toList());
@@ -92,11 +91,9 @@ public class ItemServiceImpl implements ItemService {
         LocalDateTime lastBookingDate = bookingRepository.findTopByItemIdAndStartBeforeOrderByStartDesc(itemDto.getId(), LocalDateTime.now())
                 .map(Booking::getStart)
                 .orElse(null);
-
         LocalDateTime nextBookingDate = bookingRepository.findTopByItemIdAndStartAfterOrderByStartAsc(itemDto.getId(), LocalDateTime.now())
                 .map(Booking::getStart)
                 .orElse(null);
-
         itemDto.setLastBooking(lastBookingDate);
         itemDto.setNextBooking(nextBookingDate);
         return itemDto;
@@ -106,17 +103,13 @@ public class ItemServiceImpl implements ItemService {
     public CommentDto addComment(Long itemId, Long userId, CommentDto commentDto) {
         Item item = itemRepository.findById(itemId)
                 .orElseThrow(() -> new NotFoundException("Вещь с id=" + itemId + " не найдена"));
-
         User user = userService.findById(userId);
-
         bookingRepository.findTopByItemIdAndBookerIdAndEndBeforeOrderByEndDesc(itemId, userId, LocalDateTime.now())
-                .orElseThrow(() -> new ConditionsNotMetException("Пользователь не брал эту вещь в аренду или аренда еще не завершена"));
-
+                .orElseThrow(() -> new ConditionsNotMetException("Пользователь c id=" + userId + " не брал вещь c id=" + itemId + " в аренду или аренда еще не завершена"));
         Comment comment = CommentMapper.toComment(commentDto);
         comment.setItem(item);
         comment.setAuthor(user);
         comment.setCreated(LocalDateTime.now());
-
         return CommentMapper.toCommentDto(commentRepository.save(comment));
     }
 

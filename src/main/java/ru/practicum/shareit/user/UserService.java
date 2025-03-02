@@ -67,10 +67,9 @@ public class UserService {
 
     private void checkEmailConflict(User user) {
         userRepository.findByEmail(user.getEmail())
+                .filter(existingUser -> !Objects.equals(existingUser.getId(), user.getId()))
                 .ifPresent(existingUser -> {
-                    if (!Objects.equals(existingUser.getId(), user.getId())) {
-                        throw new DataConflictException("Пользователь с email=" + user.getEmail() + " уже существует.");
-                    }
+                    throw new DataConflictException("Пользователь с email=" + user.getEmail() + " уже существует.");
                 });
     }
 }
