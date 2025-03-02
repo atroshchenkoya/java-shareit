@@ -1,11 +1,9 @@
-package ru.practicum.shareit.user.service;
+package ru.practicum.shareit.user;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ru.practicum.shareit.user.model.User;
-import ru.practicum.shareit.user.repository.UserRepository;
 import ru.practicum.shareit.util.exception.DataConflictException;
 import ru.practicum.shareit.util.exception.NotFoundException;
 

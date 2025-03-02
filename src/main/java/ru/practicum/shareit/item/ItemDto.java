@@ -1,4 +1,4 @@
-package ru.practicum.shareit.item.dto;
+package ru.practicum.shareit.item;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.NotBlank;
@@ -9,9 +9,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.practicum.shareit.comment.dto.CommentDto;
-import ru.practicum.shareit.request.model.ItemRequest;
-import ru.practicum.shareit.user.model.User;
+import ru.practicum.shareit.comment.CommentDto;
+import ru.practicum.shareit.request.ItemRequest;
+import ru.practicum.shareit.user.User;
 import ru.practicum.shareit.util.validation.groups.Create;
 
 import java.time.LocalDateTime;
