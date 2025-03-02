@@ -71,14 +71,6 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Collection<ItemDto> getUserItems(Long userId) {
-        return itemRepository.findAllByOwnerId(userId).stream()
-                .map(ItemMapper::toItemDto)
-                .map(this::setBookingDates)
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public Collection<ItemDto> searchItems(String text) {
         if (text.isBlank()) return List.of();
         return itemRepository.findAvailableItemsByNameOrDescription(text)
@@ -87,16 +79,35 @@ public class ItemServiceImpl implements ItemService {
                 .collect(Collectors.toList());
     }
 
-    private ItemDto setBookingDates(ItemDto itemDto) {
-        LocalDateTime lastBookingDate = bookingRepository.findTopByItemIdAndStartBeforeOrderByStartDesc(itemDto.getId(), LocalDateTime.now())
-                .map(Booking::getStart)
+    @Override
+    public Collection<ItemDto> getUserItems(Long userId) {
+        List<Item> items = itemRepository.findAllByOwnerId(userId);
+        List<Long> itemIds = items.stream()
+                .map(Item::getId)
+                .collect(Collectors.toList());
+        List<Booking> lastBookings = bookingRepository.findLastBookingsByItemIds(itemIds, LocalDateTime.now());
+        List<Booking> nextBookings = bookingRepository.findNextBookingsByItemIds(itemIds, LocalDateTime.now());
+
+        return items.stream()
+                .map(item -> {
+                    ItemDto itemDto = ItemMapper.toItemDto(item);
+                    setBookingDates(itemDto, lastBookings, nextBookings);
+                    return itemDto;
+                })
+                .collect(Collectors.toList());
+    }
+
+    private void setBookingDates(ItemDto itemDto, List<Booking> lastBookings, List<Booking> nextBookings) {
+        Booking lastBooking = lastBookings.stream()
+                .filter(booking -> booking.getItem().getId().equals(itemDto.getId()))
+                .findFirst()
                 .orElse(null);
-        LocalDateTime nextBookingDate = bookingRepository.findTopByItemIdAndStartAfterOrderByStartAsc(itemDto.getId(), LocalDateTime.now())
-                .map(Booking::getStart)
+        Booking nextBooking = nextBookings.stream()
+                .filter(booking -> booking.getItem().getId().equals(itemDto.getId()))
+                .findFirst()
                 .orElse(null);
-        itemDto.setLastBooking(lastBookingDate);
-        itemDto.setNextBooking(nextBookingDate);
-        return itemDto;
+        itemDto.setLastBooking(lastBooking != null ? lastBooking.getStart() : null);
+        itemDto.setNextBooking(nextBooking != null ? nextBooking.getStart() : null);
     }
 
     @Override
