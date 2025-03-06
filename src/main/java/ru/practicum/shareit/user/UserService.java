@@ -1,10 +1,9 @@
-package ru.practicum.shareit.user.service;
+package ru.practicum.shareit.user;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ru.practicum.shareit.user.model.User;
-import ru.practicum.shareit.user.storage.UserStorage;
 import ru.practicum.shareit.util.exception.DataConflictException;
 import ru.practicum.shareit.util.exception.NotFoundException;
 
@@ -14,22 +13,23 @@ import java.util.Objects;
 @Service
 @Slf4j
 @RequiredArgsConstructor
+@Transactional
 public class UserService {
-    private final UserStorage userStorage;
+    private final UserRepository userRepository;
 
     public User findById(Long id) {
-        return userStorage.findById(id)
+        return userRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Пользователь с id=" + id + " не найден."));
     }
 
     public Collection<User> findAll() {
-        return userStorage.findAll();
+        return userRepository.findAll();
     }
 
     public User create(User user) {
         checkEmailConflict(user);
         setNameByLoginIfNameIsNull(user);
-        return userStorage.create(user);
+        return userRepository.save(user);
     }
 
     public User partialUpdate(User updates) {
@@ -44,12 +44,12 @@ public class UserService {
             existingUser.setName(updates.getName());
         }
 
-        return userStorage.update(existingUser);
+        return userRepository.save(existingUser);
     }
 
     public void delete(long id) {
         checkUser(id);
-        userStorage.delete(id);
+        userRepository.deleteById(id);
     }
 
     private void setNameByLoginIfNameIsNull(User user) {
@@ -60,15 +60,16 @@ public class UserService {
     }
 
     public void checkUser(Long userId) {
-        if (userStorage.findById(userId).isEmpty()) {
+        if (!userRepository.existsById(userId)) {
             throw new NotFoundException("Пользователь с id=" + userId + " не найден.");
         }
     }
 
     private void checkEmailConflict(User user) {
-        User userFromStorage = userStorage.findByEmail(user.getEmail()).orElse(null);
-        if (Objects.nonNull(userFromStorage)) {
-            throw new DataConflictException("Пользователь с email=" + user.getEmail() + " уже существует.");
-        }
+        userRepository.findByEmail(user.getEmail())
+                .filter(existingUser -> !Objects.equals(existingUser.getId(), user.getId()))
+                .ifPresent(existingUser -> {
+                    throw new DataConflictException("Пользователь с email=" + user.getEmail() + " уже существует.");
+                });
     }
 }

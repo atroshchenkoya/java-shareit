@@ -1,4 +1,4 @@
-package ru.practicum.shareit.request.model;
+package ru.practicum.shareit.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,7 +6,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.practicum.shareit.user.model.User;
+import ru.practicum.shareit.user.User;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -14,10 +16,10 @@ import ru.practicum.shareit.user.model.User;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class ItemRequest {
+public class ItemRequestDto {
     @EqualsAndHashCode.Include
     private Long id;
     private String description;
     private User requester;
-    private Long timestamp;
+    private LocalDateTime timestamp;
 }
