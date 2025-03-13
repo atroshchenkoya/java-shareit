@@ -12,6 +12,8 @@ import java.util.List;
 public interface ItemRepository extends JpaRepository<Item, Long> {
     List<Item> findAllByOwnerId(Long ownerId);
 
+    List<Item> findByRequestIdIn(List<Long> requestIds);
+
     @Query(value = """
         SELECT * FROM items i
         WHERE (i.name ILIKE :text

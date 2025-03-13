@@ -5,8 +5,8 @@ public class ItemRequestMapper {
         return ItemRequestDto.builder()
                 .id(itemRequest.getId())
                 .description(itemRequest.getDescription())
-                .requester(itemRequest.getRequester())
-                .timestamp(itemRequest.getTimestamp())
+                .created(itemRequest.getTimestamp())
+                .requesterId(itemRequest.getRequester().getId())
                 .build();
     }
 
@@ -14,8 +14,6 @@ public class ItemRequestMapper {
         return ItemRequest.builder()
                 .id(itemRequestDto.getId())
                 .description(itemRequestDto.getDescription())
-                .requester(itemRequestDto.getRequester())
-                .timestamp(itemRequestDto.getTimestamp())
                 .build();
     }
 }

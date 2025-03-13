@@ -13,6 +13,8 @@ import ru.practicum.shareit.item.ItemDto;
 import ru.practicum.shareit.item.ItemMapper;
 import ru.practicum.shareit.item.Item;
 import ru.practicum.shareit.item.ItemRepository;
+import ru.practicum.shareit.request.ItemRequest;
+import ru.practicum.shareit.request.ItemRequestRepository;
 import ru.practicum.shareit.user.User;
 import ru.practicum.shareit.user.UserService;
 import ru.practicum.shareit.util.exception.ConditionsNotMetException;
@@ -33,13 +35,22 @@ public class ItemServiceImpl implements ItemService {
     private final UserService userService;
     private final BookingRepository bookingRepository;
     private final CommentRepository commentRepository;
+    private final ItemRequestRepository itemRequestRepository;
 
     @Override
     public ItemDto addItem(Long userId, ItemDto itemDto) {
         User owner = userService.findById(userId);
         Item item = ItemMapper.toItem(itemDto);
         item.setOwner(owner);
-        return ItemMapper.toItemDto(itemRepository.save(item));
+        if (Objects.isNull(itemDto.getRequestId())) {
+            return ItemMapper.toItemDto(itemRepository.save(item));
+        }
+        ItemRequest itemRequest = itemRequestRepository.findById(itemDto.getRequestId())
+                .orElseThrow(() -> new NotFoundException("Запрос с id=" + itemDto.getId() + " не найден"));
+        item.setRequest(itemRequest);
+        ItemDto itemDtoForRs = ItemMapper.toItemDto(itemRepository.save(item));
+        itemDtoForRs.setRequestId(itemRequest.getId());
+        return itemDtoForRs;
     }
 
     @Override
@@ -123,5 +134,4 @@ public class ItemServiceImpl implements ItemService {
         comment.setCreated(LocalDateTime.now());
         return CommentMapper.toCommentDto(commentRepository.save(comment));
     }
-
 }

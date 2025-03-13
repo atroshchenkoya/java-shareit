@@ -6,9 +6,10 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.practicum.shareit.user.User;
+import ru.practicum.shareit.item.ItemDto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,6 +21,7 @@ public class ItemRequestDto {
     @EqualsAndHashCode.Include
     private Long id;
     private String description;
-    private User requester;
-    private LocalDateTime timestamp;
+    private Long requesterId;
+    private LocalDateTime created;
+    private List<ItemDto> items;
 }

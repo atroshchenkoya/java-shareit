@@ -10,7 +10,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import ru.practicum.shareit.comment.CommentDto;
-import ru.practicum.shareit.request.ItemRequest;
 import ru.practicum.shareit.user.User;
 import ru.practicum.shareit.util.validation.groups.Create;
 
@@ -39,8 +38,7 @@ public class ItemDto {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private User owner;
 
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private ItemRequest request;
+    private Long requestId;
 
     private LocalDateTime lastBooking;
 
