@@ -13,7 +13,6 @@
 
     <name>ShareIt Gateway</name>
 
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
