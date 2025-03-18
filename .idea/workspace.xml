@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f322377d-cc7f-47a4-8f00-acedefda42bc" name="Changes" comment="style fix">
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/user/UserClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/user/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/user/UserDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/util/ErrorHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/util/exception/ConditionsNotMetException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/util/exception/DataConflictException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/util/exception/NotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/util/exception/UnauthorizedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/util/validation/BookingDatesValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/util/validation/ValidBookingDates.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/util/validation/groups/Create.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/util/validation/groups/Update.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/BookingController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/BookingMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/BookingRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/dto/BookingRqDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/dto/BookingRsDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/model/Booking.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/model/BookingStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/service/BookingService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/service/BookingServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/comment/Comment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/comment/CommentDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/comment/CommentMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/comment/CommentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/Item.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/ItemController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/ItemDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/ItemMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/ItemRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/service/ItemService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/service/ItemServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/ItemRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/ItemRequestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/ItemRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/ItemRequestMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/ItemRequestRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/service/ItemRequestService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/service/ItemRequestServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/util/ErrorHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/util/exception/ConditionsNotMetException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/util/exception/DataConflictException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/util/exception/NotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/util/exception/UnauthorizedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/util/validation/BookingDatesValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/util/validation/ValidBookingDates.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/util/validation/groups/Create.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/util/validation/groups/Update.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/api-tests.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/api-tests.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/checkstyle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/checkstyle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lombok.config" beforeDir="false" afterPath="$PROJECT_DIR$/lombok.config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/ShareItApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/booking/BookingController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/booking/BookingMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/booking/BookingRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/booking/dto/BookingRqDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/booking/dto/BookingRsDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/booking/model/Booking.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/booking/model/BookingStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/booking/service/BookingService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/booking/service/BookingServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/comment/Comment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/comment/CommentDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/comment/CommentMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/comment/CommentRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/item/Item.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/item/ItemController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/item/ItemDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/item/ItemMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/item/ItemRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/item/service/ItemService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/item/service/ItemServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/request/ItemRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/request/ItemRequestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/request/ItemRequestDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/request/ItemRequestMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/request/ItemRequestRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/request/service/ItemRequestService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/request/service/ItemRequestServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/user/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/user/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/user/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/user/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/util/ErrorHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/util/exception/ConditionsNotMetException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/util/exception/DataConflictException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/util/exception/NotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/util/exception/UnauthorizedException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/util/validation/BookingDatesValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/util/validation/ValidBookingDates.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/util/validation/groups/Create.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/practicum/shareit/util/validation/groups/Update.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/schema.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/practicum/shareit/ShareItTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/suppressions.xml" beforeDir="false" afterPath="$PROJECT_DIR$/suppressions.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Exception" />
+        <option value="AnnotationType" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2svmbJWxxDZiwCSRrUaZrRpklmH" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.docker-compose.yml.postgres: Compose Deployment.executor": "Run",
+    "Maven.shareit [clean].executor": "Run",
+    "Maven.shareit [install].executor": "Run",
+    "Maven.shareit [package].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.ShareItApp.executor": "Run",
+    "Spring Boot.ShareItGateway.executor": "Run",
+    "Spring Boot.ShareItServer.executor": "Run",
+    "git-widget-placeholder": "add-item-requests-and-gateway",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Yuri/ideaProjects/java-shareit/gateway/src/main/java/ru/practicum/shareit",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "run.configurations.included.in.services": "true",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Yuri\ideaProjects\java-shareit\gateway\src\main\java\ru\practicum\shareit" />
+      <recent name="C:\Users\Yuri\ideaProjects\java-shareit\server\src\main\java\ru\practicum\shareit" />
+      <recent name="C:\Users\Yuri\ideaProjects\java-shareit\server\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="java-shareit" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="java-shareit" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ShareItApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="shareit" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ru.practicum.shareit.ShareItApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShareItGateway" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="shareit-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ru.practicum.shareit.ShareItGateway" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShareItServer" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="shareit-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ru.practicum.shareit.ShareItServer" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.postgres: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="envFilePath" value="" />
+          <option name="services">
+            <list>
+              <option value="postgres" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.docker-compose.yml.postgres: Compose Deployment" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f322377d-cc7f-47a4-8f00-acedefda42bc" name="Changes" comment="" />
+      <created>1739344492582</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1739344492582</updated>
+      <workItem from="1739344493647" duration="17800000" />
+      <workItem from="1739662423139" duration="1000" />
+      <workItem from="1739662433210" duration="2000" />
+      <workItem from="1739663362985" duration="1000" />
+      <workItem from="1739700280539" duration="43000" />
+      <workItem from="1740387098697" duration="625000" />
+      <workItem from="1740387735249" duration="32122000" />
+      <workItem from="1740903189195" duration="7965000" />
+      <workItem from="1741846772876" duration="24199000" />
+    </task>
+    <task id="LOCAL-00001" summary="test">
+      <option name="closed" value="true" />
+      <created>1739344534996</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1739344534996</updated>
+    </task>
+    <task id="LOCAL-00002" summary="add user logic">
+      <option name="closed" value="true" />
+      <created>1739534142715</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1739534142715</updated>
+    </task>
+    <task id="LOCAL-00003" summary="user and items controllers">
+      <option name="closed" value="true" />
+      <created>1739539524131</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1739539524131</updated>
+    </task>
+    <task id="LOCAL-00004" summary="user and items to jpa">
+      <option name="closed" value="true" />
+      <created>1740561377791</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1740561377791</updated>
+    </task>
+    <task id="LOCAL-00005" summary="structure fix">
+      <option name="closed" value="true" />
+      <created>1740903376883</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1740903376883</updated>
+    </task>
+    <task id="LOCAL-00006" summary="minor fix">
+      <option name="closed" value="true" />
+      <created>1740909068102</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1740909068102</updated>
+    </task>
+    <task id="LOCAL-00007" summary="n+1 fix">
+      <option name="closed" value="true" />
+      <created>1740911049308</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1740911049308</updated>
+    </task>
+    <task id="LOCAL-00008" summary="add request logic">
+      <option name="closed" value="true" />
+      <created>1741862391682</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1741862391682</updated>
+    </task>
+    <task id="LOCAL-00009" summary="style fix">
+      <option name="closed" value="true" />
+      <created>1741862509012</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1741862509012</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="add-item-requests-and-gateway" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test" />
+    <MESSAGE value="add user logic" />
+    <MESSAGE value="user and items controllers" />
+    <MESSAGE value="user and items to jpa" />
+    <MESSAGE value="structure fix" />
+    <MESSAGE value="minor fix" />
+    <MESSAGE value="n+1 fix" />
+    <MESSAGE value="add request logic" />
+    <MESSAGE value="style fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="style fix" />
+  </component>
+</project>
