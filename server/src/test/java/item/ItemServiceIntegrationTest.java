@@ -1,22 +1,22 @@
 package item;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.transaction.annotation.Transactional;
-import ru.practicum.shareit.ShareItServer;
-import ru.practicum.shareit.item.Item;
-import ru.practicum.shareit.item.ItemDto;
-import ru.practicum.shareit.item.ItemRepository;
-import ru.practicum.shareit.item.service.ItemService;
-import ru.practicum.shareit.user.User;
-import ru.practicum.shareit.user.UserRepository;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
+//import org.junit.jupiter.api.BeforeEach;
+//import org.junit.jupiter.api.Test;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.test.annotation.Rollback;
+//import org.springframework.transaction.annotation.Transactional;
+//import ru.practicum.shareit.ShareItServer;
+//import ru.practicum.shareit.item.Item;
+//import ru.practicum.shareit.item.ItemDto;
+//import ru.practicum.shareit.item.ItemRepository;
+//import ru.practicum.shareit.item.service.ItemService;
+//import ru.practicum.shareit.user.User;
+//import ru.practicum.shareit.user.UserRepository;
+//
+//import java.util.List;
+//
+//import static org.assertj.core.api.Assertions.assertThat;
 
 //@SpringBootTest(classes = ShareItServer.class)
 //@Transactional
