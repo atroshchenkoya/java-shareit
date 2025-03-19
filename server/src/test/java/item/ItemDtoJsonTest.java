@@ -46,16 +46,20 @@ public class ItemDtoJsonTest {
 
     @Test
     void testItemDtoDeserialization() throws Exception {
-        String json = """
-                { "id": 1,
-                  "name": "Item Name",
-                  "description": "Item Description",
-                  "available": true,
-                  "owner": {"id": 1, "name": "John", "email": "john.doe@example.com"},
-                  "lastBooking": "2025-03-19T10:00:00",
-                  "nextBooking": "2025-03-20T10:00:00",
-                  "comments": []
-                }""";
+        String json = "{"
+                + "\"id\": 1,"
+                + "\"name\": \"Item Name\","
+                + "\"description\": \"Item Description\","
+                + "\"available\": true,"
+                + "\"owner\": {"
+                + "\"id\": 1,"
+                + "\"name\": \"John\","
+                + "\"email\": \"john.doe@example.com\""
+                + "},"
+                + "\"lastBooking\": \"2025-03-19T10:00:00\","
+                + "\"nextBooking\": \"2025-03-20T10:00:00\","
+                + "\"comments\": []"
+                + "}";
 
         ItemDto itemDto = objectMapper.readValue(json, ItemDto.class);
 
