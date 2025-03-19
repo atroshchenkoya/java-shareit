@@ -84,16 +84,13 @@ public class BookingServiceImpl implements BookingService {
 
     private List<BookingRsDto> getUserBookingsByState(Long userId, BookingStatus status) {
         List<Booking> bookings;
-        if (status == null) {
-            bookings = bookingRepository.findByBookerIdOrderByStartDesc(userId);
-        } else {
-            bookings = switch (status) {
-                case WAITING -> bookingRepository.findByBookerIdAndStatusOrderByStartDesc(userId, BookingStatus.WAITING);
-                case APPROVED -> bookingRepository.findByBookerIdAndStatusOrderByStartDesc(userId, BookingStatus.APPROVED);
-                case REJECTED -> bookingRepository.findByBookerIdAndStatusOrderByStartDesc(userId, BookingStatus.REJECTED);
-                case CANCELLED -> bookingRepository.findByBookerIdAndStatusOrderByStartDesc(userId, BookingStatus.CANCELLED);
-            };
-        }
+        bookings = switch (status) {
+            case WAITING -> bookingRepository.findByBookerIdAndStatusOrderByStartDesc(userId, BookingStatus.WAITING);
+            case APPROVED -> bookingRepository.findByBookerIdAndStatusOrderByStartDesc(userId, BookingStatus.APPROVED);
+            case REJECTED -> bookingRepository.findByBookerIdAndStatusOrderByStartDesc(userId, BookingStatus.REJECTED);
+            case CANCELLED -> bookingRepository.findByBookerIdAndStatusOrderByStartDesc(userId, BookingStatus.CANCELLED);
+            case ALL -> bookingRepository.findByBookerIdOrderByStartDesc(userId);
+        };
         return bookings.stream()
                 .map(bookingMapper::toBookingRsDto)
                 .collect(Collectors.toList());
@@ -101,16 +98,13 @@ public class BookingServiceImpl implements BookingService {
 
     private List<BookingRsDto> getOwnerBookingsByState(Long ownerId, BookingStatus status) {
         List<Booking> bookings;
-        if (status == null) {
-            bookings = bookingRepository.findByItemOwnerIdOrderByStartDesc(ownerId);
-        } else {
-            bookings = switch (status) {
-                case WAITING -> bookingRepository.findByItemOwnerIdAndStatusOrderByStartDesc(ownerId, BookingStatus.WAITING);
-                case APPROVED -> bookingRepository.findByItemOwnerIdAndStatusOrderByStartDesc(ownerId, BookingStatus.APPROVED);
-                case REJECTED -> bookingRepository.findByItemOwnerIdAndStatusOrderByStartDesc(ownerId, BookingStatus.REJECTED);
-                case CANCELLED -> bookingRepository.findByItemOwnerIdAndStatusOrderByStartDesc(ownerId, BookingStatus.CANCELLED);
-            };
-        }
+        bookings = switch (status) {
+            case WAITING -> bookingRepository.findByItemOwnerIdAndStatusOrderByStartDesc(ownerId, BookingStatus.WAITING);
+            case APPROVED -> bookingRepository.findByItemOwnerIdAndStatusOrderByStartDesc(ownerId, BookingStatus.APPROVED);
+            case REJECTED -> bookingRepository.findByItemOwnerIdAndStatusOrderByStartDesc(ownerId, BookingStatus.REJECTED);
+            case CANCELLED -> bookingRepository.findByItemOwnerIdAndStatusOrderByStartDesc(ownerId, BookingStatus.CANCELLED);
+            case ALL -> bookingRepository.findByItemOwnerIdOrderByStartDesc(ownerId);
+        };
         return bookings.stream()
                 .map(bookingMapper::toBookingRsDto)
                 .collect(Collectors.toList());

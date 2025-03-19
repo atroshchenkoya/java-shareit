@@ -38,21 +38,21 @@ public class BookingController {
 
     @PatchMapping("/{bookingId}")
     public BookingRsDto approveBooking(@RequestHeader(USER_ID_HEADER) Long ownerId,
-                                       @PathVariable Long bookingId,
-                                       @RequestParam boolean approved) {
+                                       @PathVariable("bookingId") Long bookingId,
+                                       @RequestParam("approved") boolean approved) {
         return bookingService.approveBooking(ownerId, bookingId, approved);
     }
 
     @GetMapping("/{bookingId}")
     public BookingRsDto getBooking(@RequestHeader(USER_ID_HEADER) Long userId,
-                                   @PathVariable Long bookingId) {
+                                   @PathVariable("bookingId") Long bookingId) {
         return bookingService.getBooking(userId, bookingId);
     }
 
     @GetMapping
     public List<BookingRsDto> getUserBookings(@RequestHeader(USER_ID_HEADER) Long userId,
-                                              @RequestParam(required = false) BookingStatus status) {
-        return bookingService.getUserBookings(userId, status);
+                                              @RequestParam(name = "state", defaultValue = "ALL") BookingStatus state) {
+        return bookingService.getUserBookings(userId, state);
     }
 
     @GetMapping("/owner")

@@ -6,7 +6,8 @@ public enum BookingState {
 	WAITING,
 	APPROVED,
 	REJECTED,
-	CANCELLED;
+	CANCELLED,
+	ALL;
 
 	public static Optional<BookingState> from(String stringState) {
 		for (BookingState state : values()) {
