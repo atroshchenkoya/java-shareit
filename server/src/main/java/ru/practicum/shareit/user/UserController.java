@@ -24,7 +24,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/{id}")
-    public User findById(@PathVariable long id) {
+    public User findById(@PathVariable("id") long id) {
         return userService.findById(id);
     }
 
@@ -40,14 +40,14 @@ public class UserController {
     }
 
     @PatchMapping("/{id}")
-    public User update(@PathVariable long id, @Validated(Update.class) @RequestBody User user) {
+    public User update(@PathVariable("id") long id, @Validated(Update.class) @RequestBody User user) {
         user.setId(id);
         return userService.partialUpdate(user);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable long id) {
+    public void delete(@PathVariable("id") long id) {
         userService.delete(id);
     }
 }
