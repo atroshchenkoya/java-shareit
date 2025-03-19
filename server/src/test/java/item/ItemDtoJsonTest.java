@@ -47,8 +47,7 @@ public class ItemDtoJsonTest {
     @Test
     void testItemDtoDeserialization() throws Exception {
         String json = """
-                {
-                  "id": 1,
+                { "id": 1,
                   "name": "Item Name",
                   "description": "Item Description",
                   "available": true,
