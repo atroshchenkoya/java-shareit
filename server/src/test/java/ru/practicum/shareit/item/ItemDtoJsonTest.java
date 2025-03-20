@@ -1,4 +1,4 @@
-package item;
+package ru.practicum.shareit.item;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.test.context.ContextConfiguration;
 import ru.practicum.shareit.ShareItServer;
-import ru.practicum.shareit.item.ItemDto;
 import ru.practicum.shareit.user.User;
 
 import java.time.LocalDateTime;
