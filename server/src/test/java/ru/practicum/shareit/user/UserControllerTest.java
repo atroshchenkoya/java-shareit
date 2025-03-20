@@ -1,4 +1,4 @@
-package ru.practicum.shareit.item.user;
+package ru.practicum.shareit.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,9 +9,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import ru.practicum.shareit.user.User;
-import ru.practicum.shareit.user.UserController;
-import ru.practicum.shareit.user.UserService;
 
 import java.util.Collections;
 
