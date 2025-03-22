@@ -1,12 +1,14 @@
 package ru.practicum.shareit.request;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import ru.practicum.shareit.request.service.ItemRequestService;
 
@@ -21,6 +23,7 @@ public class ItemRequestController {
     private static final String HEADER_USER_ID = "X-Sharer-User-Id";
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public ItemRequestDto addRequest(@RequestHeader(HEADER_USER_ID) Long userId,
                                      @RequestBody ItemRequestDto requestDto) {
         requestDto.setId(userId);

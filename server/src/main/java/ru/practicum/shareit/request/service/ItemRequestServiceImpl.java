@@ -29,7 +29,7 @@ public class ItemRequestServiceImpl implements ItemRequestService {
 
     @Override
     public ItemRequestDto addRequest(ItemRequestDto requestDto) {
-        User user = userService.findById(requestDto.getId());
+        User user = userService.findById(requestDto.getRequesterId());
         ItemRequest itemRequest = ItemRequestMapper.toItemRequest(requestDto);
         itemRequest.setTimestamp(LocalDateTime.now());
         itemRequest.setRequester(user);
