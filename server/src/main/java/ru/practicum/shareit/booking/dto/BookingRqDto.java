@@ -1,7 +1,6 @@
 package ru.practicum.shareit.booking.dto;
 
 import jakarta.validation.constraints.Future;
-import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,7 +24,7 @@ public class BookingRqDto {
     private Long id;
 
     @NotNull(message = "Дата начала не может быть пустой.", groups = Create.class)
-    @FutureOrPresent(message = "Дата начала не может быть в прошлом.", groups = Create.class)
+    //@FutureOrPresent(message = "Дата начала не может быть в прошлом.", groups = Create.class)
     private LocalDateTime start;
 
     @NotNull(message = "Дата окончания не может быть пустой.", groups = Create.class)
