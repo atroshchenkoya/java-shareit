@@ -10,6 +10,8 @@ import ru.practicum.shareit.booking.model.Booking;
 import ru.practicum.shareit.booking.model.BookingStatus;
 import ru.practicum.shareit.comment.CommentDto;
 import ru.practicum.shareit.item.service.ItemService;
+import ru.practicum.shareit.request.ItemRequestDto;
+import ru.practicum.shareit.request.service.ItemRequestService;
 import ru.practicum.shareit.user.User;
 import ru.practicum.shareit.user.UserRepository;
 import ru.practicum.shareit.util.exception.ConditionsNotMetException;
@@ -31,6 +33,8 @@ class ItemServiceIntegrationTest {
     private UserRepository userRepository;
     @Autowired
     private ItemService itemService;
+    @Autowired
+    private ItemRequestService itemRequestService;
     @Autowired
     private BookingRepository bookingRepository;
 
@@ -298,6 +302,56 @@ class ItemServiceIntegrationTest {
         assertThatThrownBy(() -> itemService.addComment(item.getId(), renter.getId(), commentDto))
                 .isInstanceOf(ConditionsNotMetException.class)
                 .hasMessageContaining("Пользователь c id=" + renter.getId() + " не брал вещь c id=" + item.getId() + " в аренду или аренда еще не завершена");
+    }
+
+    @Test
+    void addItem_shouldThrowNotFoundException_whenRequestNotFound() {
+        User owner = userRepository.save(User.builder()
+                .name("John Doe")
+                .email("john@example.com")
+                .build());
+
+        ItemDto itemDto = ItemDto.builder()
+                .name("Item Name")
+                .description("Item Description")
+                .available(true)
+                .requestId(999L)
+                .build();
+
+        assertThatThrownBy(() -> itemService.addItem(owner.getId(), itemDto))
+                .isInstanceOf(NotFoundException.class)
+                .hasMessageContaining("Запрос с id=999 не найден");
+    }
+
+    @Test
+    void addItem_shouldSaveItemWithRequest() {
+        User owner = userRepository.save(User.builder()
+                .name("John Doe")
+                .email("john@example.com")
+                .build());
+        User requester = userRepository.save(User.builder()
+                .name("Jane Doe")
+                .email("jane@example.com")
+                .build());
+
+        ItemRequestDto requestDto = ItemRequestDto.builder()
+                .description("Need a powerful drill")
+                .requesterId(requester.getId())
+                .build();
+        ItemRequestDto savedRequest = itemRequestService.addRequest(requestDto);
+
+        ItemDto itemDto = ItemDto.builder()
+                .name("Drill")
+                .description("Powerful drill")
+                .available(true)
+                .owner(owner)
+                .requestId(savedRequest.getId())
+                .build();
+
+        ItemDto savedItem = itemService.addItem(owner.getId(), itemDto);
+
+        assertThat(savedItem.getId()).isNotNull();
+        assertThat(savedItem.getRequestId()).isEqualTo(savedRequest.getId());
     }
 
 }

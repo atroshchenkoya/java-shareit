@@ -411,4 +411,233 @@ class BookingServiceIntegrationTest {
         assertThat(rejectedBookings.getFirst().getId()).isEqualTo(rejectedBooking.getId());
     }
 
+    @Test
+    void getUserBookings_shouldReturnBookingsByStatus_whenUserExists() {
+        User booker = userRepository.save(User.builder()
+                .name("Jane Doe")
+                .email("jane@example.com")
+                .build());
+
+        Item item = itemRepository.save(Item.builder()
+                .name("Drill")
+                .description("Powerful drill")
+                .available(true)
+                .owner(booker)
+                .build());
+
+        Booking waitingBooking = bookingRepository.save(Booking.builder()
+                .booker(booker)
+                .item(item)
+                .start(LocalDateTime.now().plusDays(1))
+                .end(LocalDateTime.now().plusDays(2))
+                .status(BookingStatus.WAITING)
+                .build());
+
+        Booking approvedBooking = bookingRepository.save(Booking.builder()
+                .booker(booker)
+                .item(item)
+                .start(LocalDateTime.now().plusDays(3))
+                .end(LocalDateTime.now().plusDays(4))
+                .status(BookingStatus.APPROVED)
+                .build());
+
+        Booking rejectedBooking = bookingRepository.save(Booking.builder()
+                .booker(booker)
+                .item(item)
+                .start(LocalDateTime.now().plusDays(5))
+                .end(LocalDateTime.now().plusDays(6))
+                .status(BookingStatus.REJECTED)
+                .build());
+
+        Booking cancelledBooking = bookingRepository.save(Booking.builder()
+                .booker(booker)
+                .item(item)
+                .start(LocalDateTime.now().plusDays(7))
+                .end(LocalDateTime.now().plusDays(8))
+                .status(BookingStatus.CANCELLED)
+                .build());
+
+        List<BookingRsDto> waitingBookings = bookingService.getUserBookings(booker.getId(), BookingStatus.WAITING);
+        List<BookingRsDto> approvedBookings = bookingService.getUserBookings(booker.getId(), BookingStatus.APPROVED);
+        List<BookingRsDto> rejectedBookings = bookingService.getUserBookings(booker.getId(), BookingStatus.REJECTED);
+        List<BookingRsDto> cancelledBookings = bookingService.getUserBookings(booker.getId(), BookingStatus.CANCELLED);
+        List<BookingRsDto> allBookings = bookingService.getUserBookings(booker.getId(), BookingStatus.ALL);
+
+        assertThat(waitingBookings.size()).isEqualTo(1);
+        assertThat(waitingBookings.getFirst().getId()).isEqualTo(waitingBooking.getId());
+
+        assertThat(approvedBookings.size()).isEqualTo(1);
+        assertThat(approvedBookings.getFirst().getId()).isEqualTo(approvedBooking.getId());
+
+        assertThat(rejectedBookings.size()).isEqualTo(1);
+        assertThat(rejectedBookings.getFirst().getId()).isEqualTo(rejectedBooking.getId());
+
+        assertThat(cancelledBookings.size()).isEqualTo(1);
+        assertThat(cancelledBookings.getFirst().getId()).isEqualTo(cancelledBooking.getId());
+
+        assertThat(allBookings.size()).isEqualTo(4);
+    }
+
+    @Test
+    void getUserBookings_shouldReturnAllBookings_whenUserExistsAndStatusIsAll() {
+        User booker = userRepository.save(User.builder()
+                .name("Jane Doe")
+                .email("jane@example.com")
+                .build());
+
+        Item item1 = itemRepository.save(Item.builder()
+                .name("Drill")
+                .description("Powerful drill")
+                .available(true)
+                .owner(booker)
+                .build());
+
+        Booking booking1 = bookingRepository.save(Booking.builder()
+                .booker(booker)
+                .item(item1)
+                .start(LocalDateTime.now().plusDays(1))
+                .end(LocalDateTime.now().plusDays(2))
+                .status(BookingStatus.WAITING)
+                .build());
+
+        Booking booking2 = bookingRepository.save(Booking.builder()
+                .booker(booker)
+                .item(item1)
+                .start(LocalDateTime.now().plusDays(3))
+                .end(LocalDateTime.now().plusDays(4))
+                .status(BookingStatus.APPROVED)
+                .build());
+
+        List<BookingRsDto> bookings = bookingService.getUserBookings(booker.getId(), BookingStatus.ALL);
+
+        assertThat(bookings.size()).isEqualTo(2);
+        assertThat(bookings.get(0).getId()).isEqualTo(booking2.getId());
+        assertThat(bookings.get(1).getId()).isEqualTo(booking1.getId());
+    }
+
+    @Test
+    void getOwnerBookings_shouldReturnBookingsByStatus_whenOwnerHasBookings() {
+        User owner = userRepository.save(User.builder()
+                .name("John Doe")
+                .email("john@example.com")
+                .build());
+
+        User booker = userRepository.save(User.builder()
+                .name("Jane Doe")
+                .email("jane@example.com")
+                .build());
+
+        Item item = itemRepository.save(Item.builder()
+                .name("Drill")
+                .description("Powerful drill")
+                .available(true)
+                .owner(owner)
+                .build());
+
+        Booking waitingBooking = bookingRepository.save(Booking.builder()
+                .booker(booker)
+                .item(item)
+                .start(LocalDateTime.now().plusDays(1))
+                .end(LocalDateTime.now().plusDays(2))
+                .status(BookingStatus.WAITING)
+                .build());
+
+        Booking approvedBooking = bookingRepository.save(Booking.builder()
+                .booker(booker)
+                .item(item)
+                .start(LocalDateTime.now().plusDays(3))
+                .end(LocalDateTime.now().plusDays(4))
+                .status(BookingStatus.APPROVED)
+                .build());
+
+        List<BookingRsDto> waitingBookings = bookingService.getOwnerBookings(owner.getId(), BookingStatus.WAITING);
+        List<BookingRsDto> approvedBookings = bookingService.getOwnerBookings(owner.getId(), BookingStatus.APPROVED);
+
+        assertThat(waitingBookings.size()).isEqualTo(1);
+        assertThat(waitingBookings.getFirst().getId()).isEqualTo(waitingBooking.getId());
+
+        assertThat(approvedBookings.size()).isEqualTo(1);
+        assertThat(approvedBookings.getFirst().getId()).isEqualTo(approvedBooking.getId());
+    }
+
+    @Test
+    void getOwnerBookings_shouldReturnAllBookings_whenOwnerHasBookingsAndStatusIsAll() {
+        User owner = userRepository.save(User.builder()
+                .name("John Doe")
+                .email("john@example.com")
+                .build());
+
+        User booker = userRepository.save(User.builder()
+                .name("Jane Doe")
+                .email("jane@example.com")
+                .build());
+
+        Item item1 = itemRepository.save(Item.builder()
+                .name("Drill")
+                .description("Powerful drill")
+                .available(true)
+                .owner(owner)
+                .build());
+
+        Booking booking1 = bookingRepository.save(Booking.builder()
+                .booker(booker)
+                .item(item1)
+                .start(LocalDateTime.now().plusDays(1))
+                .end(LocalDateTime.now().plusDays(2))
+                .status(BookingStatus.WAITING)
+                .build());
+
+        Booking booking2 = bookingRepository.save(Booking.builder()
+                .booker(booker)
+                .item(item1)
+                .start(LocalDateTime.now().plusDays(3))
+                .end(LocalDateTime.now().plusDays(4))
+                .status(BookingStatus.APPROVED)
+                .build());
+
+        List<BookingRsDto> bookings = bookingService.getOwnerBookings(owner.getId(), BookingStatus.ALL);
+
+        assertThat(bookings.size()).isEqualTo(2);
+        assertThat(bookings.get(0).getId()).isEqualTo(booking2.getId());
+        assertThat(bookings.get(1).getId()).isEqualTo(booking1.getId());
+    }
+
+    @Test
+    void approveBooking_shouldThrowException_whenUserIsNotOwner() {
+        User owner = userRepository.save(User.builder()
+                .name("John Doe")
+                .email("john@example.com")
+                .build());
+
+        User booker = userRepository.save(User.builder()
+                .name("Jane Doe")
+                .email("jane@example.com")
+                .build());
+
+        Item item = itemRepository.save(Item.builder()
+                .name("Drill")
+                .description("Powerful drill")
+                .available(true)
+                .owner(owner)
+                .build());
+
+        Booking booking = bookingRepository.save(Booking.builder()
+                .booker(booker)
+                .item(item)
+                .start(LocalDateTime.now().plusDays(1))
+                .end(LocalDateTime.now().plusDays(2))
+                .status(BookingStatus.WAITING)
+                .build());
+
+        User stranger = userRepository.save(User.builder()
+                .name("Stranger")
+                .email("stranger@example.com")
+                .build());
+
+        assertThatThrownBy(() -> bookingService.approveBooking(stranger.getId(), booking.getId(), true))
+                .isInstanceOf(UnauthorizedException.class)
+                .hasMessageContaining("Пользователь с id=" + stranger.getId() + " не является владельцем вещи");
+    }
+
+
 }

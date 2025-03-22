@@ -46,7 +46,7 @@ public class ItemServiceImpl implements ItemService {
             return ItemMapper.toItemDto(itemRepository.save(item));
         }
         ItemRequest itemRequest = itemRequestRepository.findById(itemDto.getRequestId())
-                .orElseThrow(() -> new NotFoundException("Запрос с id=" + itemDto.getId() + " не найден"));
+                .orElseThrow(() -> new NotFoundException("Запрос с id=" + itemDto.getRequestId() + " не найден"));
         item.setRequest(itemRequest);
         ItemDto itemDtoForRs = ItemMapper.toItemDto(itemRepository.save(item));
         itemDtoForRs.setRequestId(itemRequest.getId());
