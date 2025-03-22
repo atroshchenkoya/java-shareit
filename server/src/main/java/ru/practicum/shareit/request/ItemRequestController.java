@@ -26,7 +26,7 @@ public class ItemRequestController {
     @ResponseStatus(HttpStatus.CREATED)
     public ItemRequestDto addRequest(@RequestHeader(HEADER_USER_ID) Long userId,
                                      @RequestBody ItemRequestDto requestDto) {
-        requestDto.setId(userId);
+        requestDto.setRequesterId(userId);
         return requestService.addRequest(requestDto);
     }
 
