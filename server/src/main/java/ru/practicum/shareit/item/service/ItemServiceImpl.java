@@ -24,6 +24,7 @@ import ru.practicum.shareit.util.exception.UnauthorizedException;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -96,29 +97,24 @@ public class ItemServiceImpl implements ItemService {
         List<Long> itemIds = items.stream()
                 .map(Item::getId)
                 .collect(Collectors.toList());
-        List<Booking> lastBookings = bookingRepository.findLastBookingsByItemIds(itemIds, LocalDateTime.now());
-        List<Booking> nextBookings = bookingRepository.findNextBookingsByItemIds(itemIds, LocalDateTime.now());
-
+        Map<Long, Booking> lastBookingsMap = bookingRepository.findLastBookingsByItemIds(itemIds, LocalDateTime.now())
+                .stream()
+                .collect(Collectors.toMap(booking -> booking.getItem().getId(), booking -> booking));
+        Map<Long, Booking> nextBookingsMap = bookingRepository.findNextBookingsByItemIds(itemIds, LocalDateTime.now())
+                .stream()
+                .collect(Collectors.toMap(booking -> booking.getItem().getId(), booking -> booking));
         return items.stream()
                 .map(item -> {
                     ItemDto itemDto = ItemMapper.toItemDto(item);
-                    setBookingDates(itemDto, lastBookings, nextBookings);
+                    itemDto.setLastBooking(lastBookingsMap.getOrDefault(item.getId(), null) != null
+                            ? lastBookingsMap.get(item.getId()).getStart()
+                            : null);
+                    itemDto.setNextBooking(nextBookingsMap.getOrDefault(item.getId(), null) != null
+                            ? nextBookingsMap.get(item.getId()).getStart()
+                            : null);
                     return itemDto;
                 })
                 .collect(Collectors.toList());
-    }
-
-    private void setBookingDates(ItemDto itemDto, List<Booking> lastBookings, List<Booking> nextBookings) {
-        Booking lastBooking = lastBookings.stream()
-                .filter(booking -> booking.getItem().getId().equals(itemDto.getId()))
-                .findFirst()
-                .orElse(null);
-        Booking nextBooking = nextBookings.stream()
-                .filter(booking -> booking.getItem().getId().equals(itemDto.getId()))
-                .findFirst()
-                .orElse(null);
-        itemDto.setLastBooking(lastBooking != null ? lastBooking.getStart() : null);
-        itemDto.setNextBooking(nextBooking != null ? nextBooking.getStart() : null);
     }
 
     @Override
