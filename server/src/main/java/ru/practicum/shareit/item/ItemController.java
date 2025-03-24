@@ -1,7 +1,6 @@
 package ru.practicum.shareit.item;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.practicum.shareit.comment.CommentDto;
 import ru.practicum.shareit.item.service.ItemService;
-import ru.practicum.shareit.util.validation.groups.Create;
 
 import java.util.Collection;
 
@@ -26,7 +24,7 @@ public class ItemController {
     private static final String HEADER_USER_ID = "X-Sharer-User-Id";
 
     @PostMapping
-    public ItemDto addItem(@Validated(Create.class) @RequestBody ItemDto itemDto,
+    public ItemDto addItem(@RequestBody ItemDto itemDto,
                            @RequestHeader(HEADER_USER_ID) Long userId) {
         return itemService.addItem(userId, itemDto);
     }

@@ -2,7 +2,6 @@ package ru.practicum.shareit.booking;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +16,6 @@ import ru.practicum.shareit.booking.dto.BookingRqDto;
 import ru.practicum.shareit.booking.dto.BookingRsDto;
 import ru.practicum.shareit.booking.model.BookingStatus;
 import ru.practicum.shareit.booking.service.BookingService;
-import ru.practicum.shareit.util.validation.groups.Create;
 
 import java.util.List;
 
@@ -32,7 +30,7 @@ public class BookingController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public BookingRsDto createBooking(@RequestHeader(USER_ID_HEADER) Long userId,
-                                      @RequestBody @Validated(Create.class) BookingRqDto bookingRqDto) {
+                                      @RequestBody BookingRqDto bookingRqDto) {
         return bookingService.createBooking(userId, bookingRqDto);
     }
 
